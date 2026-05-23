@@ -18,3 +18,12 @@ spec:
         ports:
         - containerPort: 5000
         - containerPort: 8000
+        # --- ADD THIS SECTION BELOW ---
+        resources:
+          requests:
+            memory: "64Mi"   # Minimum memory needed
+            cpu: "100m"     # Minimum CPU (100 millicores)
+          limits:
+            memory: "128Mi"  # Maximum memory allowed
+            cpu: "500m"     # Maximum CPU allowed
+        # ------------------------------
