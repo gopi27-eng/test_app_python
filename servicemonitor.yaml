@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: python-app-monitor
+  labels:
+    # This must match the name you used in 'helm install <name>'
+    release: monitoring 
+spec:
+  selector:
+    matchLabels:
+      app: my-app # This must match the label in your service.yaml
+  endpoints:
+  - port: metrics # This must match the port NAME in your service.yaml
+    path: /metrics
+    interval: 15s
