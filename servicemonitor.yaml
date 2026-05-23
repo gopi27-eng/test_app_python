@@ -3,13 +3,12 @@ kind: ServiceMonitor
 metadata:
   name: python-app-monitor
   labels:
-    # This must match the name you used in 'helm install <name>'
-    release: monitoring 
+    release: monitoring  # <--- This matches your kubectl output exactly
 spec:
   selector:
     matchLabels:
-      app: my-app # This must match the label in your service.yaml
+      app: my-app        # <--- Make sure this matches the 'app' label in your Service.yaml
   endpoints:
-  - port: metrics # This must match the port NAME in your service.yaml
+  - port: metrics        # <--- This must match the 'name' given to the port in Service.yaml
     path: /metrics
     interval: 15s
