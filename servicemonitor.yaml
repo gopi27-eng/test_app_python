@@ -3,12 +3,15 @@ kind: ServiceMonitor
 metadata:
   name: python-app-monitor
   labels:
-    release: monitoring  # <--- This matches your kubectl output exactly
+    release: monitoring
 spec:
+  # --- ADD THIS SECTION ---
+  namespaceSelector:
+    any: true 
+  # -------------------------
   selector:
     matchLabels:
-      app: my-app        # <--- Make sure this matches the 'app' label in your Service.yaml
+      app: my-app
   endpoints:
-  - port: metrics        # <--- This must match the 'name' given to the port in Service.yaml
+  - port: metrics
     path: /metrics
-    interval: 15s
